@@ -30,6 +30,7 @@ After making any change to the tests, login to the servers and do the following:
 		nohup locust -f <test_file.py> --master &
 
 2. Start test on slaves
+
 		cd load-testing
 		git pull
 		source venv/bin/activate
