@@ -13,10 +13,10 @@ This repo has the details for setting up locust tests for WAC
 
 Following are the test files to test each module of the application independently, use them one by one on locust to do a stress test against each module.
 
-1. `Tracks Module` - test_tracks.py
-2. `Personal Interview` - test_personal_interview.py
-3. `DAT` - test_dat.py
-4. `GPT` - test_gpt.py
+1. `Tracks Module` - tracks_stress_test.py
+2. `Personal Interview`: personal_interview_stress_test.py
+3. `DAT` - dat_stress_test.py
+4. `GPT` - gpt_stress_test.py
 
 ### Steps For Runnning Tests
 
