@@ -25,15 +25,15 @@ After making any change to the tests, login to the servers and do the following:
 1.  Start test on master
 
 		cd load-testing
-		git pull
 		source venv/bin/activate
+        git pull
 		nohup locust -f <test_file.py> --master &
 
 2. Start test on slaves
 
 		cd load-testing
-		git pull
 		source venv/bin/activate
+        git pull
 		nohup locust -f <test-file.py> --slave --master-host=157.245.138.188 &
 		
 3. Run the test through UI - http://157.245.138.188:8089/
