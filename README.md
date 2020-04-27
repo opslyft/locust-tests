@@ -20,7 +20,7 @@ Following are the test files to test each module of the application independentl
 
 ### Steps For Runnning Tests
 
-After making any change to the tests, login to the servers and do the following:
+After making any change to the tests, login to the servers & kill the existing locust process and do the following:
 
 1.  Start test on master
 
