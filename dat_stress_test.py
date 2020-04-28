@@ -8,6 +8,7 @@ class UserBehavior(TaskSequence):
 
     @seq_task(1)
     def login(self):
+        print('1111')
         response = self.client.get('/api/tracks/description?slug=dat-stress-test')
         if response.status_code == 200:
             self.headers = {
@@ -20,16 +21,18 @@ class UserBehavior(TaskSequence):
     # Dat Stress Test
     @seq_task(2)
     def task1(self):
+        print('2222')
         response = self.client.get('/api/tracks/header/dat-stress-test', headers=self.headers)
         print(response.json())
 
-    @seq_task(3)
-    def task2(self):
-        response = self.client.get('/api/tracks/description?slug=dat-stress-test', headers=self.headers)
-        print(response.json())
+    # @seq_task(3)
+    # def task2(self):
+    #     response = self.client.get('/api/tracks/description?slug=dat-stress-test', headers=self.headers)
+    #     print(response.json())
 
     @seq_task(4)
     def task3(self):
+        print('3333')
         data = {
             "slug": "dat-stress-test",
             "user": {
@@ -40,11 +43,12 @@ class UserBehavior(TaskSequence):
             "iphone": False
         }
 
-        response = self.client.put('/api/tracks', json=data)
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
         print(response.json())
 
     @seq_task(5)
     def task4(self):
+        print('4444')
         with open('requirements.txt', 'rb') as binary:
             data = {
                 'file': binary
@@ -62,6 +66,7 @@ class UserBehavior(TaskSequence):
     # Failing: Getting Bad request error
     @seq_task(7)
     def task6(self):
+        print('5555')
         data = {
             "slug": "dat-stress-test",
             "bandwidth": {},
@@ -75,13 +80,16 @@ class UserBehavior(TaskSequence):
     # Failing: Getting Bad request error
     @seq_task(8)
     def task7(self):
+        print('6666')
         response = self.client.get('/api/tracks/instruction/dat-stress-test?zigged=false',
                                    headers=self.headers)
+        print(self.headers)
         print(response.json())
 
     # Failing: Getting Bad request error
     @seq_task(9)
     def task8(self):
+        print('7777')
         data = {
             "slug": "dat-stress-test",
             "progress": "Capture",
@@ -95,11 +103,13 @@ class UserBehavior(TaskSequence):
     # tested
     @seq_task(10)
     def task9(self):
+        print('8888')
         response = self.client.get('/api/tracks/capture/dat-stress-test', headers=self.headers)
         print(response.json())
 
     @seq_task(11)
     def task10(self):
+        print('9999')
         data = {
             "data": {
                 "title": "Name",
