@@ -1,7 +1,7 @@
-from locust import HttpLocust, TaskSet, task, constant, seq_task
+from locust import HttpLocust, TaskSequence, task, constant, seq_task
 
 
-class UserBehavior(TaskSet):
+class UserBehavior(TaskSequence):
     def __init__(self, parent):
         super().__init__(parent)
         self.headers = {}
