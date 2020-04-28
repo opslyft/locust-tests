@@ -135,14 +135,14 @@ class UserBehavior(TaskSet):
         self.client.get('/api/tracks/questions/for-stress-test?zigged=false', headers=self.headers)
 
     @seq_task(11)
-    @task(1)
+    @task(50)
     def task10(self):
         data = {
             "slug": "for-stress-test",
             "answer": {
                 "question": "5e98010a13ae465161676291",
                 "content": {
-                    "value": "",
+                    "value": "1234",
                     "time": 60
                 },
                 "isDirty": True
@@ -153,6 +153,17 @@ class UserBehavior(TaskSet):
         }
 
         self.client.put('/api/tracks', json=data, headers=self.headers)
+
+    @seq_task(12)
+    def task11(self):
+        data = {
+            "slug": "for-stress-test",
+            "progress": "Done",
+            "zigged": False,
+            "iphone": False
+        }
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
 
 
 class WebsiteUser(HttpLocust):
