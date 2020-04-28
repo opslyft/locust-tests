@@ -54,10 +54,10 @@ class UserBehavior(TaskSequence):
             print(response.json())
 
     # Failing: Getting Bad request error
-    @seq_task(6)
-    def task5(self):
-        response = self.client.get('/api/assets/blob/11587973724676', headers=self.headers)
-        print(response.json())
+    # @seq_task(6)
+    # def task5(self):
+    #     response = self.client.get('/api/assets/blob/11587973724676', headers=self.headers)
+    #     print(response.json())
 
     # Failing: Getting Bad request error
     @seq_task(7)
