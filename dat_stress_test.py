@@ -8,7 +8,7 @@ class UserBehavior(TaskSequence):
 
     @seq_task(1)
     def login(self):
-        response = self.client.get('/api/tracks/description?slug=for-stress-test')
+        response = self.client.get('/api/tracks/description?slug=dat-stress-test')
         if response.status_code == 200:
             self.headers = {
                 'Authorization': response.json()['session']
