@@ -4,6 +4,8 @@ class UserBehavior(TaskSequence):
     def __init__(self, parent):
         super().__init__(parent)
         self.headers = {}
+        self.task_identifier1 = {}
+        self.task_identifier2 = {}
 
     @seq_task(1)
     def login(self):
@@ -174,6 +176,8 @@ class UserBehavior(TaskSequence):
     def task9(self):
         print('9999')
         response = self.client.get('/api/zig-tracks/tracks/stress-test-flow', headers=self.headers)
+        self.tracks_identifier1 = response.json()['tracksIdentifiers'][0]
+        self.tracks_identifier2 = response.json()['tracksIdentifiers'][1]
         print(response.json())
     
     @seq_task(11)
@@ -193,7 +197,7 @@ class UserBehavior(TaskSequence):
         print('12 12 12 12')
         data = {
             "slug": "stress-test-essay",
-            "zigIdentifier": "4556f3d0-8b37-11ea-ad1d-330a9a281998",
+            "zigIdentifier": str(self.tracks_identifier1),
             "zigged": True,
             "iphone": False
         }
@@ -222,6 +226,7 @@ class UserBehavior(TaskSequence):
         print(response.json())
     
     @seq_task(16)
+    @task(50)
     def task15(self):
         print('15 15 15 15')
         data = {
@@ -241,6 +246,79 @@ class UserBehavior(TaskSequence):
     
     @seq_task(17)
     def task16(self):
+        data = {
+            "slug": "stress-test-essay",
+            "progress": "Done",
+            "zigged": False,
+            "iphone": False
+        }
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
+
+    @seq_task(18)
+    def task17(self):
+        data = {
+            "slug": "stress-test-essay1",
+            "zigIdentifier": str(self.tracks_identifier2),
+            "zigged": True,
+            "iphone": False
+        }
+        
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
+    
+    @seq_task(19)
+    def task18(self):
+        print('13 13 13 13')
+        data = {
+            "slug": "stress-test-essay1",
+            "progress": "Questions",
+            "zigged": True,
+            "isMobile": False,
+            "iphone": False
+        }
+
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
+    
+    @seq_task(20)
+    def task19(self):
+        print('14 14 14 14')
+        response = self.client.get('/api/tracks/questions/stress-test-essay1?zigged=true', headers=self.headers)
+        print(response.json())
+    
+    @seq_task(21)
+    @task(50)
+    def task20(self):
+        print('15 15 15 15')
+        data = {
+            "slug": "stress-test-essay1",
+            "answer": {
+                "question": "5eab25a73677615a6d5f2885",
+                "content": 0,
+                "isDirty": True
+            },
+            "zigged": True,
+            "forceCalculation": True,
+            "iphone": False
+        }
+
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
+    
+    @seq_task(22)
+    def task21(self):
+        data = {
+            "slug": "stress-test-essay1",
+            "progress": "Done",
+            "zigged": False,
+            "iphone": False
+        }
+        response = self.client.put('/api/tracks', json=data, headers=self.headers)
+        print(response.json())
+
+    @seq_task(23)
+    def task22(self):
         print('16 16 16 16')
         data = {
             "slug": "stress-test-flow",
